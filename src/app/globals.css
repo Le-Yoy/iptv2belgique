@@ -1,26 +1,45 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background: #0f0f23;
+  color: #ffffff;
+  overflow-x: hidden;
 }
+
+/* Base variables for Claude Opus to enhance */
+:root {
+  --primary: #6366f1;
+  --secondary: #8b5cf6;
+  --accent: #06ffa5;
+  --background: #0f0f23;
+  --text-primary: #ffffff;
+  --text-secondary: #a8a8b3;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Claude Opus will enhance these styles with advanced effects */
