@@ -1,13 +1,46 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+:root {
+  /* Premium Streaming Colors */
+  --primary-black: #0a0a0a;
+  --primary-blue: #0066ff;
+  --accent-yellow: #ffb800;
+  --accent-red: #ef3340;
+
+  /* Gradients */
+  --gradient-premium: linear-gradient(135deg, #0066ff 0%, #4b0082 100%);
+  --gradient-belgian: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(255, 184, 0, 0.8) 50%,
+    rgba(239, 51, 64, 0.8) 100%
+  );
+  --gradient-cta: linear-gradient(135deg, #ffb800 0%, #ff6b00 100%);
+  --gradient-dark: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.7) 100%
+  );
+
+  /* UI Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-glass: rgba(0, 102, 255, 0.05);
+  --text-primary: #ffffff;
+  --text-secondary: #a8a8a8;
+  --text-muted: #666666;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-belgian: rgba(255, 184, 0, 0.15);
+}
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -15,31 +48,244 @@ html {
 }
 
 body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-  background: #0f0f23;
-  color: #ffffff;
-  overflow-x: hidden;
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Base variables for Claude Opus to enhance */
-:root {
-  --primary: #6366f1;
-  --secondary: #8b5cf6;
-  --accent: #06ffa5;
-  --background: #0f0f23;
-  --text-primary: #ffffff;
-  --text-secondary: #a8a8b3;
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-yellow);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b00;
+}
+
+/* Glass Morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Premium Button Styles */
+.btn-premium {
+  background: var(--gradient-cta);
+  color: var(--primary-black);
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(255, 184, 0, 0.3);
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 184, 0, 0.5);
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+/* Text Shadow for Hero */
+.hero-text-shadow {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Smooth Scroll for Carousels */
+.scroll-smooth-touch {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.scroll-smooth-touch::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+}
+
+/* Belgian Accent Border */
+.belgian-accent {
+  position: relative;
+}
+
+.belgian-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #0a0a0a 0%,
+    #ffb800 33%,
+    #ef3340 66%,
+    #0a0a0a 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.belgian-accent:hover::after {
+  opacity: 1;
+}
+
+/* Premium Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  background-clip: text;
+  background: linear-gradient(135deg, #ffb800 0%, #ff6b00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Claude Opus will enhance these styles with advanced effects */
+/* Loading Animation */
+@keyframes pulse-yellow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-yellow {
+  animation: pulse-yellow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Mobile Touch Targets */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btn-premium {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideInFromTop {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Device-based Pricing Toggle */
+.device-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 4px;
+  display: inline-flex;
+  gap: 4px;
+}
+
+.device-toggle button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.device-toggle button.active {
+  background: var(--gradient-cta);
+  color: var(--primary-black);
+}
+
+.device-toggle button:not(.active) {
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
