@@ -225,17 +225,17 @@ export default function HeroSection({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left lg:max-w-3xl"
+            className="text-left md:text-center lg:text-left lg:max-w-3xl"
           >
             {/* Trust Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-6"
+              className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-6"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm text-white/90 font-medium">
+              <span className="text-xs md:text-sm text-white/90 font-medium">
                 {language === 'fr-BE'
                   ? '2,847 regardent maintenant'
                   : language === 'nl-BE'
@@ -244,37 +244,37 @@ export default function HeroSection({
               </span>
             </motion.div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 hero-text-shadow leading-tight">
+            {/* Main Headline - Responsive sizing */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-3 md:mb-4 hero-text-shadow leading-tight">
               {currentContent.headline}
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-xl sm:text-2xl text-yellow-400 font-bold mb-4 hero-text-shadow">
+            {/* Subheadline - Responsive sizing */}
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-yellow-400 font-bold mb-3 md:mb-4 hero-text-shadow">
               {currentContent.subheadline}
             </p>
 
-            {/* Description */}
-            <p className="text-lg text-white/90 mb-8 hero-text-shadow max-w-2xl">
+            {/* Description - Responsive sizing */}
+            <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 md:mb-8 hero-text-shadow max-w-2xl">
               {currentContent.description}
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            {/* CTA Buttons - Mobile optimized */}
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-start md:justify-center lg:justify-start">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToPricing}
-                className="btn-premium text-base sm:text-lg"
+                className="btn-premium text-sm sm:text-base md:text-lg px-4 py-2.5 md:px-6 md:py-3"
               >
                 {currentContent.cta}
               </motion.button>
 
-              {/* Secondary CTA */}
+              {/* Secondary CTA - Mobile optimized */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300"
+                className="px-4 py-2.5 md:px-6 md:py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
               >
                 {language === 'fr-BE'
                   ? '✓ Installation 10 minutes'
@@ -284,11 +284,11 @@ export default function HeroSection({
               </motion.button>
             </div>
 
-            {/* Features */}
-            <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
-              <div className="flex items-center space-x-2 text-white/80">
+            {/* Features - Mobile optimized */}
+            <div className="mt-6 md:mt-8 flex flex-wrap gap-3 md:gap-4 justify-start md:justify-center lg:justify-start">
+              <div className="flex items-center space-x-1.5 md:space-x-2 text-white/80">
                 <svg
-                  className="w-5 h-5 text-green-400"
+                  className="w-4 h-4 md:w-5 md:h-5 text-green-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -298,7 +298,7 @@ export default function HeroSection({
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm font-medium">
+                <span className="text-xs md:text-sm font-medium">
                   {language === 'fr-BE'
                     ? 'Sans contrat'
                     : language === 'nl-BE'
@@ -306,9 +306,9 @@ export default function HeroSection({
                       : 'No contract'}
                 </span>
               </div>
-              <div className="flex items-center space-x-2 text-white/80">
+              <div className="flex items-center space-x-1.5 md:space-x-2 text-white/80">
                 <svg
-                  className="w-5 h-5 text-green-400"
+                  className="w-4 h-4 md:w-5 md:h-5 text-green-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -318,7 +318,7 @@ export default function HeroSection({
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm font-medium">
+                <span className="text-xs md:text-sm font-medium">
                   {language === 'fr-BE'
                     ? 'Garantie 7 jours'
                     : language === 'nl-BE'
@@ -326,9 +326,9 @@ export default function HeroSection({
                       : '7-day guarantee'}
                 </span>
               </div>
-              <div className="flex items-center space-x-2 text-white/80">
+              <div className="flex items-center space-x-1.5 md:space-x-2 text-white/80">
                 <svg
-                  className="w-5 h-5 text-green-400"
+                  className="w-4 h-4 md:w-5 md:h-5 text-green-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -338,7 +338,9 @@ export default function HeroSection({
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm font-medium">5000+ HD/4K</span>
+                <span className="text-xs md:text-sm font-medium">
+                  5000+ HD/4K
+                </span>
               </div>
             </div>
           </motion.div>
@@ -346,15 +348,15 @@ export default function HeroSection({
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => handleIndicatorClick(index)}
-            className={`h-2 transition-all duration-300 rounded-full ${
+            className={`h-1.5 md:h-2 transition-all duration-300 rounded-full ${
               index === currentSlide
-                ? 'w-8 bg-yellow-400'
-                : 'w-2 bg-white/40 hover:bg-white/60'
+                ? 'w-6 md:w-8 bg-yellow-400'
+                : 'w-1.5 md:w-2 bg-white/40 hover:bg-white/60'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
