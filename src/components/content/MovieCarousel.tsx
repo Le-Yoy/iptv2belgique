@@ -181,7 +181,9 @@ export default function MovieCarousel({ language }: MovieCarouselProps) {
               {/* Movie Carousel */}
               <div className="relative group">
                 <div
-                  ref={(el) => (scrollRefs.current[section.id] = el)}
+                  ref={(el) => {
+                    scrollRefs.current[section.id] = el;
+                  }}
                   className="flex space-x-4 overflow-x-auto scroll-smooth-touch no-scrollbar pb-4"
                 >
                   {section.movies.map((movie, index) => (
