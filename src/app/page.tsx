@@ -5,6 +5,8 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import HeroSection from '@/components/hero/HeroSection';
+import WhyUsSection from '@/components/conversion/WhyUsSection';
+import ProofSection from '@/components/conversion/ProofSection';
 import ChannelLogos from '@/components/content/ChannelLogos';
 import MovieCarousel from '@/components/content/MovieCarousel';
 import SportsSection from '@/components/content/SportsSection';
@@ -122,6 +124,11 @@ function HomeContent() {
           <HeroSection language={language} />
         </section>
 
+        {/* Why Us Section - Primary Conversion Driver */}
+        <section id="why-us">
+          <WhyUsSection language={language} />
+        </section>
+
         {/* Channel Logos Marquee - Creates trust and shows content variety */}
         <section id="channels">
           <ChannelLogos language={language} />
@@ -150,6 +157,11 @@ function HomeContent() {
         {/* Pricing Section - Main conversion point */}
         <section id="pricing">
           <DynamicPricing language={language} />
+        </section>
+
+        {/* Proof Section - Detailed Evidence */}
+        <section id="proof">
+          <ProofSection language={language} />
         </section>
 
         {/* FAQ Section - Address objections and concerns */}

@@ -77,7 +77,7 @@ const movieSections = [
 ];
 
 export default function MovieCarousel({ language }: MovieCarouselProps) {
-  const scrollRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const scrollRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const scrollLeft = (sectionId: string) => {
     const container = scrollRefs.current[sectionId];
@@ -90,6 +90,13 @@ export default function MovieCarousel({ language }: MovieCarouselProps) {
     const container = scrollRefs.current[sectionId];
     if (container) {
       container.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById('pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -176,6 +183,48 @@ export default function MovieCarousel({ language }: MovieCarouselProps) {
                     </svg>
                   </button>
                 </div>
+
+                {/* Mobile Navigation */}
+                <div className="flex md:hidden space-x-2">
+                  <button
+                    onClick={() => scrollLeft(section.id)}
+                    className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                    aria-label="Scroll left"
+                  >
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => scrollRight(section.id)}
+                    className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                    aria-label="Scroll right"
+                  >
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               {/* Movie Carousel */}
@@ -205,7 +254,10 @@ export default function MovieCarousel({ language }: MovieCarouselProps) {
                           sizes="(max-width: 640px) 150px, (max-width: 1024px) 180px, 200px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                          <button className="w-full py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 transition-colors">
+                          <button
+                            onClick={scrollToPricing}
+                            className="w-full py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 transition-colors"
+                          >
                             {language === 'fr-BE'
                               ? 'Regarder'
                               : language === 'nl-BE'
@@ -216,6 +268,45 @@ export default function MovieCarousel({ language }: MovieCarouselProps) {
                       </div>
                     </motion.div>
                   ))}
+                </div>
+
+                {/* Mobile Scroll Indicator */}
+                <div className="flex md:hidden justify-center mt-4">
+                  <div className="flex items-center space-x-2 text-gray-400 text-sm">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                      />
+                    </svg>
+                    <span>
+                      {language === 'fr-BE'
+                        ? 'Glissez pour voir plus'
+                        : language === 'nl-BE'
+                          ? 'Veeg om meer te zien'
+                          : 'Swipe to see more'}
+                    </span>
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -236,14 +327,7 @@ export default function MovieCarousel({ language }: MovieCarouselProps) {
                 ? 'Meer dan 10.000 films en series beschikbaar'
                 : 'Over 10,000 movies and series available'}
           </p>
-          <button
-            onClick={() =>
-              document
-                .getElementById('pricing')
-                ?.scrollIntoView({ behavior: 'smooth' })
-            }
-            className="btn-premium"
-          >
+          <button onClick={scrollToPricing} className="btn-premium">
             {language === 'fr-BE'
               ? 'Accès Illimité Maintenant'
               : language === 'nl-BE'
