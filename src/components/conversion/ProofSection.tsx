@@ -231,23 +231,99 @@ export default function ProofSection({ language }: ProofSectionProps) {
           </p>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {currentContent.tabs.map((tab) => (
-            <motion.button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-semibold transition-all duration-300 ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
-                  : 'bg-white/10 text-white hover:bg-white/20'
-              }`}
-            >
-              {tab.label}
-            </motion.button>
-          ))}
+        {/* Tabs - Mobile Optimized */}
+        <div className="mb-12">
+          {/* Mobile Tab Layout */}
+          <div className="block md:hidden">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-800">
+              <div className="grid grid-cols-2 gap-2">
+                {currentContent.tabs.map((tab) => (
+                  <motion.button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    whileTap={{ scale: 0.98 }}
+                    className={`relative py-4 px-3 rounded-xl font-semibold transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg shadow-yellow-500/30'
+                        : 'bg-gray-800/80 text-gray-300 border border-gray-700'
+                    }`}
+                  >
+                    {/* Active Indicator */}
+                    {activeTab === tab.id && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl"
+                        transition={{
+                          type: 'spring',
+                          bounce: 0.2,
+                          duration: 0.6,
+                        }}
+                      />
+                    )}
+
+                    {/* Tab Content */}
+                    <span className="relative z-10 text-sm font-bold">
+                      {tab.label}
+                    </span>
+
+                    {/* Active Checkmark */}
+                    {activeTab === tab.id && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          className="w-4 h-4 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </motion.div>
+                    )}
+
+                    {/* Tap Hint for Inactive Tabs */}
+                    {activeTab !== tab.id && (
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
+                        <div className="text-xs text-gray-500">Tap</div>
+                      </div>
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Instructions */}
+            <div className="mt-3 text-center">
+              <p className="text-xs text-gray-500">
+                Tap any button above to see details
+              </p>
+            </div>
+          </div>
+
+          {/* Desktop Tab Layout - Keep Original */}
+          <div className="hidden md:flex flex-wrap justify-center gap-2">
+            {currentContent.tabs.map((tab) => (
+              <motion.button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
+                    : 'bg-white/10 text-white hover:bg-white/20'
+                }`}
+              >
+                {tab.label}
+              </motion.button>
+            ))}
+          </div>
         </div>
 
         {/* Active Tab Content */}
